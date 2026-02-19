@@ -1,3 +1,7 @@
+% Copyright (c) 2026 Lei Guo
+% Licensed under the MIT License.
+% See LICENSE file for details.
+
 function [Smatrix_Ez] = func_FDTD(eps_brain, sigma_brain, verify_flag)
 
 %%% Initialize the EM constants

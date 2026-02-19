@@ -1,3 +1,7 @@
+% Copyright (c) 2026 Lei Guo
+% Licensed under the MIT License.
+% See LICENSE file for details.
+
 function [Ess, Ez_tot] = func_MoM(gt_eps, gt_sigma, eps_r_b, sigma_b, verify_flag)
 
 

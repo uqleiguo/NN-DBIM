@@ -1,3 +1,7 @@
+% Copyright (c) 2026 Lei Guo
+% Licensed under the MIT License.
+% See LICENSE file for details.
+
 clc
 clear
 
