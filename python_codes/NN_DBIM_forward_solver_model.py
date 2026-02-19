@@ -1,3 +1,11 @@
+"""
+Copyright (c) 2026 Lei Guo
+
+This file is part of the NN-DBIM project.
+Licensed under the MIT License.
+See LICENSE file in the project root for full license information.
+"""
+
 import torch
 import torch.nn as nn
 import utils
