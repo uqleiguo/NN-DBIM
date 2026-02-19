@@ -13,8 +13,8 @@ The python codes are based on torch 2.8.0, numpy 2.0.2, matplotlib 3.9.4, and py
 ## **Data**
 The relevant dataset included in the python and matlab codes are provided [here](https://drive.google.com/drive/u/1/folders/1FaTJOXJaCVh-h_K1V9pde5fqrb1yRn12) (Access will be given by contacting l.guo3@uq.edu.au)
 ## **Citation**
-If you find our work helpful in your research, please consider citing our paper:
-
+If you find our work helpful in your research, please consider citing our papers:
+```
 @article{guo2025medical,
   title={Medical Microwave Imaging Using Physics-Guided Deep Learning Part 1: The Forward Solver},
   author={Guo, L and Bialkowski, A and Abbosh, A},
@@ -22,7 +22,8 @@ If you find our work helpful in your research, please consider citing our paper:
   year={2025},
   publisher={IEEE}
 }
-
+```
+```
 @article{guo2026medical,
   title={Medical Microwave Imaging Using Physics-Guided Deep Learning Part 2: The Inverse Solver},
   author={Guo, L and Bialkowski, A and Abbosh, A},
@@ -30,5 +31,5 @@ If you find our work helpful in your research, please consider citing our paper:
   year={2026},
   publisher={IEEE}
 }
-
+```
 
