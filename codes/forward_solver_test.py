@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch
 import utils
-import EMNet_forward_solver_train
+import EMNet_forward_solver_model
 import time
 
 
