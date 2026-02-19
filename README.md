@@ -12,3 +12,23 @@ The python codes are based on torch 2.8.0, numpy 2.0.2, matplotlib 3.9.4, and py
 - 'MoM_solver_interface.m' and 'func_MoM.m' are the codes for the conventional MoM forward solver.
 ## **Data**
 The relevant dataset included in the python and matlab codes are provided [here](https://drive.google.com/drive/u/1/folders/1FaTJOXJaCVh-h_K1V9pde5fqrb1yRn12) (Access will be given by contacting l.guo3@uq.edu.au)
+## **Citation**
+If you find our work helpful in your research, please consider citing our paper:
+
+@article{guo2025medical,
+  title={Medical Microwave Imaging Using Physics-Guided Deep Learning Part 1: The Forward Solver},
+  author={Guo, L and Bialkowski, A and Abbosh, A},
+  journal={IEEE Transactions on Medical Imaging},
+  year={2025},
+  publisher={IEEE}
+}
+
+@article{guo2026medical,
+  title={Medical Microwave Imaging Using Physics-Guided Deep Learning Part 2: The Inverse Solver},
+  author={Guo, L and Bialkowski, A and Abbosh, A},
+  journal={IEEE Transactions on Medical Imaging},
+  year={2026},
+  publisher={IEEE}
+}
+
+
