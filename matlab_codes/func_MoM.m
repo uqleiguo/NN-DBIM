@@ -1,4 +1,7 @@
 % Copyright (c) 2026 Lei Guo
+% email: l.guo3@uq.edu.au
+% Institution: The University of Queensland
+
 % Licensed under the MIT License.
 % See LICENSE file for details.
 
