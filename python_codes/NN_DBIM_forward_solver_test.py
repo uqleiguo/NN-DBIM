@@ -1,5 +1,7 @@
 """
 Copyright (c) 2026 Lei Guo
+email: l.guo3@uq.edu.au
+Institution: The University of Queensland
 
 This file is part of the NN-DBIM project.
 Licensed under the MIT License.
