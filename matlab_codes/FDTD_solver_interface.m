@@ -19,7 +19,7 @@ for kk = 1 : case_num
     eps_gama = eps_heads(:, :, kk);
     sigma_gama = sigma_heads(:, :, kk);
     
-    S_Ez_mat(:, :, kk) = func_FDTD(eps_gama, sigma_gama, 0);
+    S_Ez_mat(:, :, kk) = func_FDTD(eps_gama, sigma_gama, 1);
     fprintf('The %ith case is computed...\n', kk);
     fprintf('----------------------------\n');
 end

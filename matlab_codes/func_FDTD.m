@@ -31,7 +31,7 @@ Nx = Lx / dx;            % Number of cells of the entire FDTD region for the mag
 Ny = Ly / dy;            % Number of cells of the entire FDTD region for the magnetic field
 Nx1 = Lx / dx + 1;       % Number of cells of the entire FDTD region for the electric field (one more cell for the electric field)
 Ny1 = Ly / dy + 1;       % Number of cells of the entire FDTD region for the electric field 
-dt = dx / (c * sqrt(2));    %%% Choose correct time step (see equations of (4.60a) but it is for 3D case)
+dt = dx / (c * sqrt(2));    %%% Choose correct time step
 FS = 1 / dt;
 Nt = 5000;       % Time steps calculated in the FDTD
 
@@ -248,29 +248,33 @@ xn_Ez_IM = n_pml_xn + 2;
 xp_Ez_IM = Nx - n_pml_xp;
 
 %%% ------------------------------------- Initialize the source ------------------------------------------ %%%
-%%% The frequency range of the simulation is 200 MHz to 400 MHz, thus the highest frequency is 400 MHz
+%%% The frequency range of the simulation is from f_min to f_max
+f_min = 0.5e9;
 f_max = 2e9;
+f_step = 50e6;                      % Frequency interval
 tao = sqrt(2.3) / (pi * f_max);     % Tao decide the width of the Guassian pulse
 t_o = sqrt(20) * tao;               % Time shift in order to make the Gaussian pulse has zero value at time = 0
 src_num = 16;
 source_amp = 150;
 
-freq = 1000e6 : 50e6 : 1000e6;
+%%% Here we just simulate one frequency for saving time
+% freq = f_min : f_step : f_max;    % Use this code if you want to simulate a frequency band from f_min to f_max
+freq = 1000e6;
 FT_kernal = exp(-1i .* 2 .* pi .* freq .* dt);
 
 FD_Ez = zeros(128, 128, src_num);
 FD_Hx = zeros(128, 128, src_num);
 FD_Hy = zeros(128, 128, src_num);
 
-Smatrix_Ez = zeros(src_num, src_num);
-Smatrix_Hx = zeros(src_num, src_num);
-Smatrix_Hy = zeros(src_num, src_num);
+Smatrix_Ez = zeros(src_num, src_num, length(FT_kernal));
+Smatrix_Hx = zeros(src_num, src_num, length(FT_kernal));
+Smatrix_Hy = zeros(src_num, src_num, length(FT_kernal));
 
 TD_Ez = zeros(Nt - 1, src_num, src_num);
 
 for src = 1 : src_num
-    % fprintf('#################################################################\n');
-    % fprintf('Processing the %ith source...\n', src);
+    fprintf('#################################################################\n');
+    fprintf('Processing the %ith source...\n', src);
     
     %%% Initialize the frequency domain matrix
     FT_Ez = zeros(Nx1, Ny1, length(FT_kernal));
@@ -302,17 +306,17 @@ for src = 1 : src_num
     Jiz(source_Y_Tx(src), source_X_Tx(src),:) =  source_amp * (-1 * sqrt(2 * exp(1)) / tao) .* (t_array - t_o) .* exp(-1 * (t_array - t_o) .^ 2 ./ tao ^ 2);
     
     for time_step = 1 : Nt - 1
-        % if time_step == round(Nt / 4)
-        %     fprintf('25%% time domain transition calculation has finished...\n');
-        % end
-        % 
-        % if time_step == round(Nt / 2)
-        %     fprintf('50%% time domain transition calculation has finished...\n');
-        % end
-        % 
-        % if time_step == round(3 * Nt / 4)
-        %     fprintf('75%% time domain transition calculation has finished...\n');
-        % end
+        if time_step == round(Nt / 4)
+            fprintf('25%% time domain transition calculation has finished...\n');
+        end
+
+        if time_step == round(Nt / 2)
+            fprintf('50%% time domain transition calculation has finished...\n');
+        end
+
+        if time_step == round(3 * Nt / 4)
+            fprintf('75%% time domain transition calculation has finished...\n');
+        end
         %%% ------------------------------------- Updating the Hx amd Hy fields in the intermediate region ----------------------------------------
         Hx(2 : Nx, yn_Hx_IM : yp_Hx_IM) = Chxh(2 : Nx, yn_Hx_IM : yp_Hx_IM) .* Hx(2 : Nx, yn_Hx_IM : yp_Hx_IM) + Chxez(2 : Nx, yn_Hx_IM : yp_Hx_IM) ...
                                         .* (Ez(2 : Nx, yn_Hx_IM + 1 : yp_Hx_IM + 1) - Ez(2 : Nx, yn_Hx_IM : yp_Hx_IM));
@@ -404,9 +408,9 @@ for src = 1 : src_num
         FD_Hx(:, :, src) = FT_Hx(63 : 190, 63 : 190, :);
         FD_Hy(:, :, src) = FT_Hy(63 : 190, 63 : 190, :);
         
-        Smatrix_Ez(src, :) = S_Ez;
-        Smatrix_Hx(src, :) = S_Hx;
-        Smatrix_Hy(src, :) = S_Hy;
+        Smatrix_Ez(src, :, :) = S_Ez;
+        Smatrix_Hx(src, :, :) = S_Hx;
+        Smatrix_Hy(src, :, :) = S_Hy;
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
     end
